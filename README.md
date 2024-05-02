@@ -20,3 +20,12 @@ Microsoft.EntityFrameworkCore.InMemory
  // Create chain method with Extensions!
 // add to DI
 // add to middleware
+// versioning api
+// versioning actions
+
+* ODBC
+* AddDbContext
+* app.MapGet(...)
+* Streams
+* Authentication - Authorization
+* 

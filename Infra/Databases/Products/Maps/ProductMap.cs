@@ -8,6 +8,10 @@ public class ProductMap : IEntityTypeConfiguration<Product>
         builder.HasKey(p => p.Id)
             .HasAnnotation("Key", "PrimaryKey");
 
+        builder.Property(p => p.Id)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
         builder.Property(p => p.Name)
             .IsRequired()
             .HasMaxLength(100);

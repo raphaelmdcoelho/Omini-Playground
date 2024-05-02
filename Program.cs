@@ -1,5 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAntiforgery();
+
 builder.Services.AddSwagger().AddCustomAuthentication().AddCustomAuthorization().AddProductDatabase().AddOrderDatabase();
 
 builder.Services.AddHttpContextAccessor();
@@ -13,6 +15,9 @@ app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json"
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.AddProductRoutes();
+
+app.UseAntiforgery();
+
+app.AddAdminRoutes().AddProductRoutes().AddFileRoutes();
 
 app.Run();
