@@ -83,6 +83,20 @@ public static class FileRoutes
         .WithName("DownloadFileActionV2")
         .RequireAuthorization();
 
+        app.MapDelete("/v1/files/{fileName}", ([FromServices] IWebHostEnvironment env, string fileName) =>
+        {
+            var filePath = Path.Combine(env.ContentRootPath, _filePath, fileName);
+
+            if(!File.Exists(filePath))
+                return Results.NotFound();
+
+            File.Delete(filePath);
+
+            return Results.NoContent();
+        })
+        .WithName("DeleteFileAction")
+        .RequireAuthorization();
+
         return app;
     }
 }
